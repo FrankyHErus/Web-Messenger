@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #d0e2c1;
+  flex-direction: column;
+  justify-content: space-around;
+  display: flex;
+}
+
+.mainContent {
+  width: 1080px;
+  height: 720px;
+  background: #fff;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo {
+  width: 400px;
+  height: 400px;
+  background: #6b9775;
+  border-radius: 50%;
+  margin-top: 200px;
+}
+
+/*# sourceMappingURL=Auth.4a01874d.css.map */
