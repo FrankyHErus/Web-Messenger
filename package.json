@@ -4,8 +4,8 @@
     "description": "",
     "scripts": {
         "dev": "parcel index.html",
-        "build": "parcel build index.html --no-cache --port 3000",
-        "start": "parcel build index.html --no-cache --port 3000"
+        "build": "parcel build index.html --no-cache",
+        "start": "parcel build index.html --no-cache"
     },
     "engines":{
         "node": ">=12"
