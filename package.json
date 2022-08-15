@@ -7,13 +7,14 @@
         "build": "parcel build index.html --no-cache",
         "start": "parcel build index.html --no-cache"
     },
-    "engines":{
+    "engines": {
         "node": ">=12"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@anikin/parcel-transformer-handlebars": "^1.0.9",
         "express": "^4.18.1",
         "parcel": "^2.0.1"
     }
