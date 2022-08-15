@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "parcel index.html",
         "build": "parcel build index.html",
-        "start": "parcel build index.html -p 3000 && node server.js"
+        "start": "parcel build index.html"
     },
     "engines":{
         "node": ">=12"
