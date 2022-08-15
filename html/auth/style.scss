@@ -1,111 +1,49 @@
-$black: #000;
-$white: #fff;
-$dark-green: #6b9775;
-$light-green: #d0e2c1;
-$grey: #A1A1A1;
-$dark-grey: #696969;
-$font: 'Inter', sans-serif;
-$fs-header: 48px;
-$fs-button: 32px;
-$fs-main: 24px;
-$fw-thin: 100;
+@import '../genStyles.scss';
 
-
-*{
-    margin: 0;
-    padding: 0;
-    font-family: $font;
-    font-weight: $fw-thin;
-    list-style-type: none;
-    text-decoration: none;
-    color: $black;
-}
-
-body {
-    width: 100vw;
-    height: 100vh;
-    background: $light-green;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.mainContent{
-    margin-left: auto;
-    margin-right: auto;
-    width: 1080px;
-    height: 720px;
-    background: $white;
-    border-radius: 20px;
-    display: flex;
+.container{
     flex-direction: row;
-    justify-content: space-between;
+}
 
-    .logo{
-        background: $light-green;
-        width: 400px;
-        aspect-ratio: 1;
-        border-radius: 50%;
+.logo{
+    background: $light-green;
+    width: 400px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.inputContainer{
+    max-width: 50%;
+    margin: auto;
+    
+    a{
+        display: block;
         margin: auto;
+        margin-top: 2rem;
+        width: fit-content;
+        text-decoration: underline;
+        font-size: $fs-small;
+        cursor: pointer;
     }
 
-    .inputContainer{
-        max-width: 50%;
+    .loginBtn{
+        transition: all .1s;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 250px;
+        height: 60px;
+        background-color: $light-green;
+        text-align: center;
+        font-size: $fs-medium;
+        color: #696969;
+        text-decoration: none;
         margin: auto;
-
-        .greeting{
-            display: block;
-            text-align: center;
-            font-size: $fs-header;
-            color: $dark-grey;
-        }
-
-        form{
-            width: 360px;
-            display: flex;
-            flex-direction: column;
-            margin: auto;
-
-            input{
-                padding: 1rem;
-                margin-top: 1rem;
-                font-size: $fs-main;
-                height: 75px;
-                border: 1px solid #000;
-                border-radius: 20px;
-            }
-        }
-
-        .loginBtn{
-            transition: all .1s;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            width: 250px;
-            height: 60px;
-            background-color: $light-green;
-            text-align: center;
-            font-size: $fs-button;
-            color: #696969;
-            text-decoration: none;
-            margin: auto;
-            margin-top: 2rem;
-        }
-        
-        .loginBtn:hover{
-            background-color: $dark-green;
-            color: $white
-        }
-
-        a{
-            display: block;
-            margin: auto;
-            margin-top: 2rem;
-            width: fit-content;
-            text-decoration: underline;
-            font-size: $fs-main;
-            cursor: pointer;
-        }
+        margin-top: 2rem;
     }
 
+    .loginBtn:hover{
+        background-color: $dark-green;
+        color: $white
+    }        
 }

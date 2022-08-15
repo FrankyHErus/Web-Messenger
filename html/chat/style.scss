@@ -1,0 +1,221 @@
+@import '../genStyles.scss';
+
+.container{
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+input{
+    width: calc(100% - 2rem);
+    height: 2rem;
+    border: none;
+    border-radius: 20px;
+    font-size: $fs-small;
+    padding-left: 2rem;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.chatList{
+    height: 100%;
+    flex: 1;
+    border-right: 1px solid $grey;
+
+    .header{
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        width: 100%;
+        background-color: $light-green;
+
+        .settings{
+            display: flex;
+            padding: .5rem 1rem;
+
+            a{
+                margin-top: auto;
+                margin-bottom: auto;
+                margin-left: 2rem;
+                font-size: $fs-small;
+            }
+
+            button{
+                cursor: pointer;
+                transition: all .1s;
+                margin-left: auto;
+                font-size: $fs-big;
+                background: none;
+                border: none;
+                color: $dark-green;
+            }
+
+            button:hover{
+                color:$white;
+                text-shadow: 0 0 1px $black;
+            }
+        }
+    }
+
+    ul{
+        height: 85%;
+        width: 100%;
+        background: $white;
+        overflow-y: scroll;
+        
+        li{
+            display: flex;
+            height: 8rem;
+            width: 100%;
+            border-bottom: 1px solid $grey;
+            cursor: pointer;
+
+            .avatar{
+                height: 75%;
+                aspect-ratio: 1;
+                background-color: $dark-green;
+                border-radius: 50%;
+                margin-top: 1rem;
+                margin-left: 1rem;
+            }
+
+            .content{
+                margin-left: 2rem;
+                margin-top: 1rem;
+
+                h2{
+                    font-size: $fs-medium;
+                }
+
+                p{
+                    margin-top: 1rem;
+                    font-size: $fs-small;
+                }
+            }
+        }
+    }
+}
+
+.chatContent{
+    height: 100%;
+    flex: 2;
+    background-color: $light-green;
+    display: flex;
+    flex-direction: column;
+    
+    .header{
+        flex: 5;
+        display: flex;
+        height: fit-content;
+        width: 100%;
+        padding: 1rem 0;
+        border-bottom: 1px solid $grey;
+        .avatar{
+            height: 5rem;
+            aspect-ratio: 1;
+            background-color: $dark-green;
+            border-radius: 50%;
+            margin: auto 0 auto 1rem;
+        }
+
+        h2{
+            margin: auto 0 auto 2rem;
+        }
+
+        .settingsOfChat{
+            margin: auto 0 auto auto;
+            cursor: pointer;
+            color: $dark-green;
+
+            &:hover{
+                color: $white;
+            }
+
+            &::after{
+                content: '\2807';
+                font-size: 60px;
+            }
+        }
+
+    }
+
+    .messages{
+        flex: 90;
+        width: 100%;
+        height: 80%;
+        background-color: $white;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        padding-bottom: 1rem;
+        transform: rotate(180deg);
+        direction: rtl;
+        overflow-x: hidden;
+
+        .wrapper{
+            direction: ltr;
+            transform: rotate(180deg);
+            margin-top: 1rem;
+        }
+
+        div{
+            margin-left: 1rem;
+            margin-top: auto;
+            width: 50%;
+            border-radius: 20px;
+            padding: 1rem; 
+            background-color: $light-green;
+
+            & + div{
+                margin-top: .5rem;
+            }
+        }
+
+        .userMsg{
+            margin-left: auto;
+            margin-right: 1rem;
+            background-color: $grey;
+        }
+    }
+
+    .footer{
+        display: flex;
+        flex: 5;
+        background-color: $light-green;
+        width: 100%;
+        padding: 1rem 0;
+        border-top: 1px solid $grey;
+
+        input{
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-left: 1rem;
+            height: 80%;
+            text-align: left;
+        }
+
+        .sendBtn{
+            height: 100%;
+            aspect-ratio: 1;
+            background-color: $dark-green;
+            border: none;
+            border-radius: 50%;
+            margin: auto 1rem;
+            cursor: pointer;
+
+            svg{
+                fill: $white;
+            }
+
+            &:hover{
+
+                background-color: $white;
+                svg{
+                    fill: $dark-green
+                }
+            }
+        }
+    }
+}

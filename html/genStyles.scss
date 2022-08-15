@@ -1,0 +1,103 @@
+$black: #000;
+$white: #fff;
+$dark-green: #6b9775;
+$light-green: #d0e2c1;
+$grey: #A1A1A1;
+$dark-grey: #696969;
+$font: 'Inter', sans-serif;
+$fs-huge: 200px;
+$fs-big: 48px;
+$fs-medium: 32px;
+$fs-small: 24px;
+$fw-thin: 100;
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: $font;
+    font-weight: $fw-thin;
+    list-style-type: none;
+    text-decoration: none;
+    color: $black;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: $light-green;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+h1{
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: $fs-big;
+    color: $dark-grey;
+}
+
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    width: 1080px;
+    height: 720px;
+    background: $white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+form{
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+
+    input{
+        padding: 1rem;
+        margin-top: 1rem;
+        font-size: $fs-small;
+        height: 75px;
+        border: 1px solid #000;
+        border-radius: 20px;
+    }
+}
+
+.loginBtn{
+    transition: all .1s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 250px;
+    height: 60px;
+    background-color: $light-green;
+    text-align: center;
+    font-size: $fs-medium;
+    color: #696969;
+    text-decoration: none;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.loginBtn:hover{
+    background-color: $dark-green;
+    color: $white
+}
+
+.hugeTitle{
+    font-size: $fs-huge;
+    margin-top: auto;
+    margin-bottom: 0;
+    color: $dark-green;
+}
+
+.avatar{
+    height: 4rem;
+    aspect-ratio: 1;
+    background-color: $dark-green;
+    border-radius: 50%;
+}
