@@ -50,11 +50,11 @@ input{
                 background: none;
                 border: none;
                 color: $dark-green;
-            }
 
-            button:hover{
-                color:$white;
-                text-shadow: 0 0 1px $black;
+                &:hover{
+                    color:$white;
+                    text-shadow: 0 0 1px $black;
+                }
             }
         }
     }
@@ -112,6 +112,7 @@ input{
         width: 100%;
         padding: 1rem 0;
         border-bottom: 1px solid $grey;
+
         .avatar{
             height: 5rem;
             aspect-ratio: 1;
@@ -212,6 +213,7 @@ input{
             &:hover{
 
                 background-color: $white;
+                
                 svg{
                     fill: $dark-green
                 }

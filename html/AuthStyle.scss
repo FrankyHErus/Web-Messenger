@@ -15,16 +15,6 @@
 .inputContainer{
     max-width: 50%;
     margin: auto;
-    
-    a{
-        display: block;
-        margin: auto;
-        margin-top: 2rem;
-        width: fit-content;
-        text-decoration: underline;
-        font-size: $fs-small;
-        cursor: pointer;
-    }
 
     .loginBtn{
         transition: all .1s;
@@ -40,10 +30,22 @@
         text-decoration: none;
         margin: auto;
         margin-top: 2rem;
+        text-align: -webkit-center;
+        cursor: pointer;
     }
 
     .loginBtn:hover{
         background-color: $dark-green;
         color: $white
-    }        
+    }     
+    
+    a{
+        display: block;
+        margin: auto;
+        margin-top: 2rem;
+        width: fit-content;
+        text-decoration: underline;
+        font-size: $fs-small;
+        cursor: pointer;
+    }
 }
