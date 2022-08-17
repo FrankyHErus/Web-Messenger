@@ -1,0 +1,30 @@
+---
+forms: [
+    {"name": "second_name", "type": "text", "placeholder": "Second name"},
+    {"name": "first_name", "type": "text", "placeholder": "First name"},  
+    {"name": "display_name", "type": "text", "placeholder": "Display name"},
+    {"name": "phone", "type": "text", "placeholder": "Phone"}, 
+    {"name": "email", "type": "text", "placeholder": "Email"}, 
+    {"name": "login", "type": "text", "placeholder": "Login"},
+    {"name": "oldPassword", "type": "password", "placeholder": "Old Password"},
+    {"name": "newPassword", "type": "password", "placeholder": "New Password"}
+    ]
+---
+
+<head>
+    <link rel="stylesheet" href="SettStyle.scss" />
+</head>
+<body>
+    <div class="container"> 
+        <h1>Settings</h1>
+        <div class="wrapper">
+            <form>
+                <div class="avatar"></div>
+            {{#each forms}}
+                <input type="{{this.type}}" name="{{this.name}}" placeholder="{{this.placeholder}}" style="{{this.style}}">
+            {{/each}}
+                <input class="submitBtn" type="submit" value="Save changes">
+            </form>
+        </div>
+    </div>
+</body>    

@@ -1,0 +1,51 @@
+@import 'genStyles.scss';
+
+.container{
+    flex-direction: row;
+}
+
+.logo{
+    background: $light-green;
+    width: 400px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.inputContainer{
+    max-width: 50%;
+    margin: auto;
+
+    .loginBtn{
+        transition: all .1s;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 250px;
+        height: 60px;
+        background-color: $light-green;
+        text-align: center;
+        font-size: $fs-medium;
+        color: #696969;
+        text-decoration: none;
+        margin: auto;
+        margin-top: 2rem;
+        text-align: -webkit-center;
+        cursor: pointer;
+    }
+
+    .loginBtn:hover{
+        background-color: $dark-green;
+        color: $white
+    }     
+    
+    a{
+        display: block;
+        margin: auto;
+        margin-top: 2rem;
+        width: fit-content;
+        text-decoration: underline;
+        font-size: $fs-small;
+        cursor: pointer;
+    }
+}
