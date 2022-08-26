@@ -1,0 +1,27 @@
+---
+greeting: "Welcome back!"
+forms: [
+    {"name": "login", "type": "text", "placeholder": "Login"}, 
+    {"name": "password", "type": "password", "placeholder": "Password"}
+    ]
+---
+
+<head>
+    <link rel="stylesheet" href="AuthStyle.scss" />
+</head>
+<body>
+    <main class="container">
+        <div class="logo">
+        </div>
+        <div class="inputContainer">
+            <h1 class="greeting">{{ greeting }}</h1>
+            <form action="">
+                {{#each forms}}
+                <input type="{{this.type}}" name="{{this.name}}" placeholder="{{this.placeholder}}">
+                {{/each}}
+                <input type="submit" class="loginBtn" value="Log In"/>
+            </form>
+            <a href="Reg.hbs">Create account</a>
+        </div>
+    </main>
+</body>
