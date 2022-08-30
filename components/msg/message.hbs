@@ -1,0 +1,7 @@
+{{#each messages}}
+    {{#if this.from}}
+        <div>{{this.text}}</div>
+    {{else}}
+        <div class="userMsg">{{this.text}}</div>
+    {{/if}}
+{{/each}}
