@@ -10,10 +10,6 @@
       "strictNullChecks": true,                         
       "noUnusedLocals": true,
       "noUnusedParameters": true,
-      "skipLibCheck": true,
-      "lib": [
-        "ESNext",
-        "DOM",
-      ]
+      "skipLibCheck": true
     }
   }
