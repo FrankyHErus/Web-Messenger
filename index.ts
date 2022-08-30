@@ -14,20 +14,20 @@ import { chatsData } from "./pages/Chat/chatPage"
 import { messagesData } from "./pages/Chat/chatPage"
 
 
-let inputData = {}
+const inputData : Map<string, string> = new Map();
 
-function checkString(regex, el){
+function checkString(regex : RegExp, el : HTMLInputElement){
     if(regex.test(el.value)){
-        inputData[el.name] = el.value;
+        inputData.set(el.name, el.value);
         el.style.border= "1px solid #000"
     }else{
-        inputData[el.name] = '';
+        inputData.set(el.name, el.value);
         el.style.border = "1px solid #ff0000"
     }
 }
 
 function getAllInputData(){
-    let arr = Array.from(document.getElementsByTagName("input"));
+    const arr = Array.from(document.getElementsByTagName("input"));
     arr.forEach(el => {
         if(el.type != "submit") {
             el.onblur = () => {
@@ -52,8 +52,7 @@ function getAllInputData(){
                         checkString(/^.+$/gm, el);
                         break;
                 }
-                inputData[el.name] = el.value;
-                console.log(inputData);
+                inputData.set(el.name, el.value);
             }
         }
     });
@@ -88,10 +87,10 @@ window.addEventListener('DOMContentLoaded', () => {
             root.append(chatPage.getContent()!);
 
             const chatList = new chatBtnList({chats : chatsData})
-            document.getElementById("chat-list").append(chatList.getContent()!);
+            document.getElementById("chat-list")?.append(chatList.getContent()!);
 
             const messages = new Message({messages : messagesData})
-            document.getElementById("message-block").append(messages.getContent()!)
+            document.getElementById("message-block")?.append(messages.getContent()!)
           
             chatPage.dispatchComponentDidMount();
 

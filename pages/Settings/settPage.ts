@@ -2,7 +2,7 @@ import Block from '../../utils/block';
 import template from './Settings.hbs';
 import { Form } from "../../components/form/form"
 
-let formsData : object[] = [
+const formsData : object[] = [
     {"name": "second_name", "type": "text", "placeholder": "Second name"},
     {"name": "first_name", "type": "text", "placeholder": "First name"},  
     {"name": "display_name", "type": "text", "placeholder": "Display name"},

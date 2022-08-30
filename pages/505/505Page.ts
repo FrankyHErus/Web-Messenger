@@ -7,7 +7,7 @@ interface spPageProps {
 export class SPPage extends Block {
     constructor(props: spPageProps) {
         super('main', props);
-        this.element.classList.add("container");
+        this.element?.classList.add("container");
     }
 
     init() {

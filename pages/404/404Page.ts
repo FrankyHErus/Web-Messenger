@@ -7,7 +7,7 @@ interface nfPageProps {
 export class NFPage extends Block {
     constructor(props: nfPageProps) {
         super('main', props);
-        this.element.classList.add("container");
+        this.element?.classList.add("container");
     }
 
     init() {

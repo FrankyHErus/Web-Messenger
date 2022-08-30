@@ -2,7 +2,7 @@ import Block from '../../utils/block';
 import template from './Auth.hbs';
 import { Form } from "../../components/form/form"
 
-let formsData : object[] = [
+const formsData : object[] = [
     {"name": "login", "type": "text", "placeholder": "Login"}, 
     {"name": "password", "type": "password", "placeholder": "Password"}
 ];
@@ -14,8 +14,8 @@ interface AuthPageProps {
 export class AuthPage extends Block {
     constructor(props: AuthPageProps) {
         super('main', props);
-        this.element.classList.add("container");
-        this.element.classList.add("container-row");
+        this.element?.classList.add("container");
+        this.element?.classList.add("container-row");
     }
 
     init() {
