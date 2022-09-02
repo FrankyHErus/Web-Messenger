@@ -10,9 +10,6 @@ export class SPPage extends Block {
         this.element?.classList.add("container");
     }
 
-    init() {
-    }
-
     render() { 
         return this.compile(template, this.props);
     }
