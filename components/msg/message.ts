@@ -9,7 +9,7 @@ export class Message extends Block {
   constructor(props: MessageProps) {
     super('section', props);
 
-    this.element.classList.add("wrapper");
+    this.element?.classList.add("wrapper");
   }
 
   render() {

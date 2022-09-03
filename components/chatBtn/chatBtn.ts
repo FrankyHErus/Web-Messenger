@@ -14,6 +14,7 @@ interface chatBtnProps {
 export class chatBtnList extends Block {
   constructor(props: chatBtnProps) {
     super('ul', props);
+    this.element?.classList.add("chat-list")
   }
 
   render() {

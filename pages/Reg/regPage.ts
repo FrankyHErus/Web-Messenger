@@ -18,8 +18,8 @@ interface RegPageProps {
 export class RegPage extends Block {
     constructor(props: RegPageProps) {
         super('main', props);
-        this.element.classList.add("container");
-        this.element.classList.add("container-column");
+        this.element?.classList.add("container");
+        this.element?.classList.add("container-column");
     }
 
     init() {
