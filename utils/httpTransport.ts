@@ -18,28 +18,27 @@ function queryStringify(data : object) {
 
 export default class HTTPTransport {
 
-    get = (url : string, options = {}, timeout : number) => {
-        return this.request(url, {...options, method: METHODS.GET}, timeout);
+    get = (url : string, options : Object, timeout : number) => {
+        return this.request(url, {data : options, method: METHODS.GET}, timeout);
     };
 
-    put = (url : string, options = {}, timeout : number) => {
-        return this.request(url, {...options, method: METHODS.PUT}, timeout);
+    put = (url : string, options : Object, timeout : number) => {
+        return this.request(url, {data : options, method: METHODS.PUT}, timeout);
     };
 
-    post = (url : string, options = {}, timeout : number) => {
-        return this.request(url, {...options, method: METHODS.POST}, timeout);
+    post = (url : string, options : Object, timeout : number) => {
+        return this.request(url, {data : options, method: METHODS.POST}, timeout);
     };
 
-    delete = (url : string, options = {}, timeout : number) => {
-        return this.request(url, {...options, method: METHODS.DELETE}, timeout);
+    delete = (url : string, options : Object, timeout : number) => {
+        return this.request(url, {data : options, method: METHODS.DELETE}, timeout);
     };
 
-    request = (url : string, options : any, timeout = 5000) => {
+    request = (url : string, options : {data : Object; method: string}, timeout = 5000) => {
         let {data, method} = options;
       
         if(method == METHODS.GET){
-          data = queryStringify(data);
-          url += data;
+          url += queryStringify(data);
         }
 
         return new Promise((resolve, reject) => {
@@ -59,7 +58,7 @@ export default class HTTPTransport {
           if (method === METHODS.GET || !data) {
             xhr.send();
           } else {
-            xhr.send(data);
+            xhr.send(JSON.stringify(Object.entries(data)));
           }
       });
     };

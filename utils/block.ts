@@ -10,7 +10,7 @@ class Block {
   };
 
   public id = nanoid(6);
-  protected props: any;
+  protected props: object;
   public children: Record<string, Block>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
