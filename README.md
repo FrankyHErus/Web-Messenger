@@ -12,3 +12,6 @@
 
 Ссылка на дизайн в Figma:
 https://www.figma.com/file/KMFGI1h7pylLzD8G0NITfr/Chat-Design
+
+Также сайт задеплоен в Netlify:
+https://darling-lolly-bedb8a.netlify.app
