@@ -4,7 +4,7 @@ import template from './404.hbs';
 interface nfPageProps {
 }
   
-export class NFPage extends Block {
+export class NFPage extends Block<nfPageProps> {
     constructor(props: nfPageProps) {
         super('main', props);
         this.element?.classList.add("container");

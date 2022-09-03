@@ -24,7 +24,7 @@ export const chatsData : ChatProps[] = [
 interface ChatPageProps {
 }
   
-export class ChatPage extends Block {
+export class ChatPage extends Block<ChatPage> {
 
     constructor(props: ChatPageProps) {
         super('main', props);

@@ -15,7 +15,7 @@ const formsData : object[] = [
 interface RegPageProps {
 }
   
-export class RegPage extends Block {
+export class RegPage extends Block<RegPageProps> {
     constructor(props: RegPageProps) {
         super('main', props);
         this.element?.classList.add("container");

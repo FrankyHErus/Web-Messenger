@@ -11,7 +11,7 @@ interface AuthPageProps {
     class : string
 }
   
-export class AuthPage extends Block {
+export class AuthPage extends Block<AuthPageProps> {
     constructor(props: AuthPageProps) {
         super('main', props);
         this.element?.classList.add("container");

@@ -4,7 +4,7 @@ import template from './500.hbs';
 interface spPageProps {
 }
   
-export class SPPage extends Block {
+export class SPPage extends Block<spPageProps> {
     constructor(props: spPageProps) {
         super('main', props);
         this.element?.classList.add("container");

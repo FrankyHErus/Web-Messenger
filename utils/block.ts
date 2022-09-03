@@ -1,7 +1,7 @@
 import { EventBus } from "./event-bus";
 import { nanoid } from 'nanoid';
 
-class Block {
+class Block<Props extends {}> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -11,7 +11,7 @@ class Block {
 
   public id = nanoid(6);
   protected props: object;
-  public children: Record<string, Block>;
+  public children: Record<string, Block<Props>>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
   private _meta: { tagName: string; props: any; };
@@ -38,7 +38,7 @@ class Block {
 
   _getChildrenAndProps(childrenAndProps: any) {
     const props: Record<string, any> = {};
-    const children: Record<string, Block> = {};
+    const children: Record<string, Block<Props>> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
       if (value instanceof Block) {

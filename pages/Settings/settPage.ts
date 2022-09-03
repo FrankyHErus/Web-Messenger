@@ -17,11 +17,11 @@ const formsData : object[] = [
 interface SettPageProps {
 }
   
-export class SettPage extends Block {
+export class SettPage extends Block<SettPageProps> {
     constructor(props: SettPageProps) {
         super('main', props);
-        this.element.classList.add("container");
-        this.element.classList.add("container-settings"); 
+        this.element?.classList.add("container");
+        this.element?.classList.add("container-settings"); 
     }
 
     init() {
