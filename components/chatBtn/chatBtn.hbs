@@ -1,0 +1,9 @@
+{{#each chats}}
+<li>
+    <div class="avatar" style="background-image: '{{this.avatarUrl}}'"></div>
+    <div class="content">
+        <h2>{{this.username}}</h2>
+        <p>{{this.lastMsg}}</p>
+    </div>
+</li>
+{{/each}}

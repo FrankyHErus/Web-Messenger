@@ -1,11 +1,12 @@
-@import 'genStyles.scss';
+@import '../genStyles.scss';
 
-.container{
+.container-full{
     height: 100%;
     width: 100%;
     border-radius: 0;
     display: flex;
     flex-direction: row;
+    overflow-y: hidden;
 }
 
 input{
@@ -59,7 +60,7 @@ input{
         }
     }
 
-    ul{
+    .chat-list{
         height: 85%;
         width: 100%;
         background: $white;
@@ -121,7 +122,7 @@ input{
             margin: auto 0 auto 1rem;
         }
 
-        h2{
+        .usernameTitle{
             margin: auto 0 auto 2rem;
         }
 
@@ -135,7 +136,7 @@ input{
             }
 
             &::after{
-                content: '\2807';
+                content: '⋮';
                 font-size: 60px;
             }
         }
@@ -151,13 +152,10 @@ input{
         flex-direction: column;
         overflow-y: scroll;
         padding-bottom: 1rem;
-        transform: rotate(180deg);
-        direction: rtl;
         overflow-x: hidden;
 
         .wrapper{
             direction: ltr;
-            transform: rotate(180deg);
             margin-top: 1rem;
         }
 
@@ -183,13 +181,19 @@ input{
 
     .footer{
         display: flex;
+        flex-direction: row;
         flex: 5;
         background-color: $light-green;
         width: 100%;
         padding: 1rem 0;
         border-top: 1px solid $grey;
 
-        input{
+        .message-form{
+            width: 100%;
+            flex-direction: row;
+        }
+
+        .message-input{
             margin-top: auto;
             margin-bottom: auto;
             margin-left: 1rem;
@@ -198,8 +202,8 @@ input{
         }
 
         .sendBtn{
-            height: 100%;
-            aspect-ratio: 1;
+            height: 3rem;
+            width: 3rem;
             background-color: $dark-green;
             border: none;
             border-radius: 50%;

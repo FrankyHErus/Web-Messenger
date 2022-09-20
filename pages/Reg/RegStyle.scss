@@ -1,0 +1,31 @@
+@import '../genStyles.scss';
+
+.container-column{
+    display: flex;
+    flex-direction: column !important; 
+
+    .regPageTitle{
+        margin-top: 2rem;
+    }
+
+    form{
+        flex-direction: row;
+        width: 60%;
+        flex-wrap: wrap;
+
+        input{
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submitBtn{
+            background-color: $light-green;
+            cursor: pointer;
+            &:hover{
+                background-color: $dark-green;
+                color: $white;
+            }
+        }
+    }
+
+}

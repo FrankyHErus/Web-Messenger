@@ -1,35 +1,44 @@
-@import 'genStyles.scss';
+@import '../genStyles.scss';
 
-.container{
-
+.container-settings{
     display: block;
 
-    h1{
+    .settPageTitle{
+        width: 100vw;
         margin-top: 1rem;
         margin-left: 2rem;
         text-align: left;
         height: fit-content;
     }
 
-    .wrapper{
-        width: 90%;
-        height: fit-content;
-        margin: auto;
 
-        .avatar{
-            float: left;
-            width: 200px;
-            height: 200px;
-        }
+    .avatar{
+        float: left;
+        margin: 2rem;
+        width: 10vw;
+        height: 10vw;
+    }
+
+    .wrapper{
+        width: 50vw;
+        height: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-wrap: wrap;
     
         form{
+            float: right;
             margin-top: 2rem;
+            margin-right: auto;
             width: auto;
-            display: block;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
             
             input{
+                width: 45%;
                 float: right;
-                margin-left: 1rem;
             }
 
             .submitBtn{
