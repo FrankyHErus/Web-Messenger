@@ -25,6 +25,10 @@ input{
     flex: 1;
     border-right: 1px solid $grey;
 
+    .activeChat{
+        background-color: $grey;
+    }
+
     .header{
         display: flex;
         flex-direction: column;
@@ -189,6 +193,7 @@ input{
         border-top: 1px solid $grey;
 
         .message-form{
+            display: flex;
             width: 100%;
             flex-direction: row;
         }

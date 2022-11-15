@@ -3,8 +3,8 @@ import template from './Settings.hbs';
 import { Form } from "../../components/form/form"
 
 const formsData : object[] = [
-    {"name": "second_name", "type": "text", "placeholder": "Second name"},
-    {"name": "first_name", "type": "text", "placeholder": "First name"},  
+    {"name": "first_name", "type": "text", "placeholder": "First name"},
+    {"name": "second_name", "type": "text", "placeholder": "Second name"},  
     {"name": "display_name", "type": "text", "placeholder": "Display name"},
     {"name": "phone", "type": "text", "placeholder": "Phone"}, 
     {"name": "email", "type": "email", "placeholder": "Email"}, 
@@ -28,6 +28,8 @@ export class SettPage extends Block<SettPageProps> {
         this.children.forms = new Form({
             data : formsData
         })
+
+
     }
 
     render() { 

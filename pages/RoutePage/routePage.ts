@@ -5,7 +5,7 @@ interface RoutePageProps {
     title: string;
   }
   
-  export class RoutePage extends Block<RoutePageProps> {
+export class RoutePage extends Block<RoutePageProps> {
     constructor(props: RoutePageProps) {
       super('div', props);
     }
