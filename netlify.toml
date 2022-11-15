@@ -9,21 +9,21 @@
   status=200
 
 [[redirects]]
-  from = "/Auth"
+  from = "/sign-in"
   to = "/"
   status=200
 
 [[redirects]]
-  from = "/Chat"
+  from = "/sign-up"
   to = "/"
   status=200
 
 [[redirects]]
-  from = "/Reg"
+  from = "/settings"
   to = "/"
   status=200
 
 [[redirects]]
-  from = "/Settings"
+  from = "/messenger"
   to = "/"
   status=200
