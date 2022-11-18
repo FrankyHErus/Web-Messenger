@@ -20,7 +20,7 @@ export default class HTTPTransport {
   }
 
   public get<Response>(path = '/'): Promise<Response> {
-    return this.request<Response>(this.endpoint + path);
+    return this.request<Response>(this.endpoint + path, {method: Method.Get});
   }
 
   public post<Response = void>(path: string, data?: unknown): Promise<Response> {
@@ -44,13 +44,14 @@ export default class HTTPTransport {
     });
   }
 
-  public delete<Response>(path: string): Promise<Response> {
+  public delete<Response>(path: string, data: unknown): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
       method: Method.Delete,
+      data
     });
   }
 
-  private request<Response>(url: string, options: Options = {method: Method.Get}): Promise<Response> {
+  private request<Response>(url: string, options: Options): Promise<Response> {
     const {method, data} = options;
 
     return new Promise((resolve, reject) => {
@@ -71,14 +72,20 @@ export default class HTTPTransport {
       xhr.onerror = () => reject({reason: 'network error'});
       xhr.ontimeout = () => reject({reason: 'timeout'});
 
-      xhr.setRequestHeader('Content-Type', 'application/json');
+      if(options.data instanceof FormData){
+        
+      }else{
+        xhr.setRequestHeader('Content-Type', 'application/json');
+      }
 
       xhr.withCredentials = true;
-      xhr.responseType = 'json';
+      xhr.responseType = "json";
 
       if (method === Method.Get || !data) {
         xhr.send();
-      } else {
+      } else if(options.data instanceof FormData){
+        xhr.send(data);
+      }else{
         xhr.send(JSON.stringify(data));
       }
     });

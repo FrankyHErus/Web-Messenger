@@ -16,6 +16,8 @@ import { SigninData } from "./api/authApi"
 import { isArray } from "util"
 import settController from "./controllers/settController"
 import { UserPassword } from "./api/settApi"
+import router from "./utils/router"
+import resApi from "./api/resApi"
 
 
 const inputData : Map<string, string> = new Map();
@@ -122,17 +124,39 @@ function renderPage(){
     Router.start();
     const path = document.location.pathname;
 
+    if(!getCookie("id") && path != '/sign-in' && path != '/sign-up'){
+        router.go("/sign-in");
+        renderPage();
+    }
+
     if(path == '/messenger') {
+        let activeChat : string;
+        let activeChatName : string;
+        let activeChatAvatar : string;
+
         let socket : WebSocket;
         messController.read().then(token => {
+
+            authApi.read().then((data) => {
+                if(data["avatar"] != null && data["avatar"] != "" && data["avatar"] != undefined){
+
+                    let imgUrl = "url('https://ya-praktikum.tech/api/v2/resources" + data["avatar"] + "')";
+                    document.getElementById("userAvatar")!.style.backgroundImage = imgUrl;
+                }
+            })
+
             if(token != undefined){
                 let chatProps : ChatProps[] = [];
 
                 let idList : string[] = [];
+                let nameList : string[] = [];
+                let avatarsList : string[] = [];
 
                 token.forEach(el => {
                     chatProps.push({avatarUrl : el["avatar"], username : el["title"], lastMsg : (!el["last_message"]) ? " " : el["last_message"]["content"]}); 
                     idList.push(el["id"].toString());
+                    nameList.push(el["title"]);
+                    avatarsList.push(el["avatar"]);
                 });
 
                 const chatList = new chatBtnList({chats : chatProps});
@@ -141,6 +165,9 @@ function renderPage(){
                 if(nodes){
                     for(let i = 0; i < nodes.length; i++){
                         nodes[i].id = idList[i];
+                        if(avatarsList[i] != null && avatarsList[i] != "" && avatarsList[i] != undefined){
+                            (<HTMLElement>nodes[i].querySelector('.avatar')).style.backgroundImage = "url('https://ya-praktikum.tech/api/v2/resources" + avatarsList[i] + "')";
+                        }
                         nodes[i].addEventListener("click", () => {
                             nodes?.forEach(el => {
                                 el.className = "";
@@ -149,6 +176,11 @@ function renderPage(){
 
                             document.getElementById("message-block")!.innerHTML = "";
                             
+                            activeChat = idList[i];
+                            
+                            document.querySelector(".chatContent")!.querySelector(".header")!.querySelector(".usernameTitle")!.textContent = nameList[i];
+
+                            (<HTMLElement>document.querySelector(".chatContent")!.querySelector(".header")!.querySelector(".avatar")!).style.backgroundImage = "url('https://ya-praktikum.tech/api/v2/resources" + avatarsList[i] + "')";
 
                             fetch(`https://ya-praktikum.tech/api/v2/chats/token/${idList[i]}`, {
                                 method: 'POST',
@@ -213,13 +245,68 @@ function renderPage(){
             }
         });
 
+        let opened = false;
+        document.getElementById("contextOpener")!.onclick = () => {
+            if(opened){
+                document.getElementById("contextMenu")!.classList.add("hidden");
+                opened = false;
+            }else{
+                document.getElementById("contextMenu")!.classList.remove("hidden");
+                opened = true;
+            }
+        }
+
+        document.getElementById("addUser")!.onclick = () => {
+            let userId = prompt("Enter ID of user");
+            if(userId != null && userId != ""){
+                messController.addUser({"users" : [Number(userId)], "chatId": Number(activeChat)}).then(() => {
+                    location.reload();
+                });
+            }
+        }
+        document.getElementById("removeUser")!.onclick = () => {
+            let userId = prompt("Enter ID of user");
+            if(userId != null && userId != ""){
+                messController.removeUser({"users" : [Number(userId)], "chatId": Number(activeChat)}).then(() => {
+                    location.reload();
+                });
+            }
+        }
+        document.getElementById("deleteChat")!.onclick = () => {
+                messController.deleteChat({"chatId": Number(activeChat)}).then(() => {
+                    location.reload();
+                });
+        }
+
+        document.getElementById("chatImageLink")!.onclick = () => {
+            document.getElementById("file")?.click();
+        }
+
+        let chatForm : HTMLFormElement =  <HTMLFormElement>document.getElementById('fileForm')!;
+
+        chatForm.onchange = async (e) => {
+            const formData = new FormData(chatForm);
+            formData.append("chatId", activeChat)
+            formData.append("avatar", (<HTMLInputElement>e.target).files[0]);
+            messController.setAvatar(formData).then(() => {
+                renderPage()
+            });
+        }
 
     }else if(path == '/sign-in'){
-        authController.logout();
+
+        if(getCookie("id")){
+            router.go("/messenger");
+            renderPage();
+        }
+
         document.getElementById("loginBtn")?.addEventListener("click", () => {
+
             let values = Object.values(document.querySelectorAll("input")).map((child) => ([child.name, child.value]));
 
             const data = Object.fromEntries(values);
+
+            authController.logout();
 
             authController.signin(data as SigninData);
         });
@@ -232,7 +319,13 @@ function renderPage(){
             authController.signup(data as SignupData);
         })
     }else if(path == '/settings'){
+
         authApi.read().then((data) => {
+
+            let imgUrl = "url('https://ya-praktikum.tech/api/v2/resources" + data["avatar"] + "')";
+
+            document.getElementById("avatarBtn")!.style.backgroundImage = imgUrl;
+            
             (<HTMLInputElement>document.getElementsByName("first_name")[0]).value = data["first_name"];
             (<HTMLInputElement>document.getElementsByName("second_name")[0]).value = data["second_name"];
             (<HTMLInputElement>document.getElementsByName("display_name")[0]).value = data["display_name"];
@@ -240,6 +333,21 @@ function renderPage(){
             (<HTMLInputElement>document.getElementsByName("email")[0]).value = data["email"];
             (<HTMLInputElement>document.getElementsByName("login")[0]).value = data["login"];
         })
+
+        document.getElementById("avatarBtn")!.onclick = () => {
+            document.getElementById('fileId')!.click();
+        }
+
+        let formEl : HTMLFormElement =  <HTMLFormElement>document.getElementById('fileForm')!;
+
+        formEl.onchange = async (e) => {
+            const target = e.target as HTMLInputElement;
+            const formData = new FormData(formEl);
+            formData.append("avatar", target.files[0]);
+            settController.changeAvatar(formData).then(() => {
+                renderPage()
+            });
+        }
 
         document.getElementById("settSubmitBtn")!.onclick = () =>{
             
@@ -264,6 +372,14 @@ function renderPage(){
                     })
             }
         };
+
+        document.getElementById("backBtn")!.onclick = () => {
+            Router.back();
+        }
+
+        document.getElementById("logoutBtn")!.onclick = () => {
+            authController.logout();
+        }
     }else if(path == '/'){
         document.location.pathname = '/sign-in'
     }
@@ -279,5 +395,5 @@ window.addEventListener('DOMContentLoaded', () => {
 
     renderPage();
 
-  });
+});
   

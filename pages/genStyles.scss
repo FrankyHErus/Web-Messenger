@@ -2,6 +2,7 @@ $black: #000;
 $white: #fff;
 $dark-green: #6b9775;
 $light-green: #d0e2c1;
+$light-grey: #cccccc;
 $grey: #A1A1A1;
 $dark-grey: #696969;
 $font: 'Inter', sans-serif;
@@ -100,4 +101,9 @@ form{
     aspect-ratio: 1;
     background-color: $dark-green;
     border-radius: 50%;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-clip: content-box;
 }

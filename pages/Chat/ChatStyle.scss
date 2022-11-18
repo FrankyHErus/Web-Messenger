@@ -131,7 +131,7 @@ input{
         }
 
         .settingsOfChat{
-            margin: auto 0 auto auto;
+            margin: auto 2rem auto auto;
             cursor: pointer;
             color: $dark-green;
 
@@ -143,6 +143,30 @@ input{
                 content: '⋮';
                 font-size: 60px;
             }
+        }
+
+        #contextMenu{
+            z-index: 100;
+            position: fixed;
+            right: 2rem;
+            top: 5rem;
+            display: flex;
+            flex-direction: column;
+            background-color: $light-grey;
+
+            a{
+                padding: 0.5rem;
+                font-size: 1.5rem;
+
+            }
+
+            a:hover{
+                background-color: $grey;
+            }
+        }
+
+        .hidden{
+            display: none !important;
         }
 
     }

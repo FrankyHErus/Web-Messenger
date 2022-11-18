@@ -26,6 +26,42 @@ export class MessController {
       console.error(e.message);
     }
   }
+
+  async addUser(data: {"users" : number[], "chatId" : number}){
+    try {
+      return await this.api.addUser(data);
+
+    } catch (e: any) {
+      console.error(e.message);
+    }
+  }
+
+  async removeUser(data: {"users" : number[], "chatId" : number}){
+    try {
+      return await this.api.removeUser(data);
+
+    } catch (e: any) {
+      console.error(e.message);
+    }
+  }
+
+  async deleteChat(data: {"chatId" : number}){
+    try {
+      return await this.api.deletecChat(data);
+
+    } catch (e: any) {
+      console.error(e.message);
+    }
+  }
+
+  async setAvatar(data: FormData){
+    try {
+      return await this.api.setAvatar(data);
+
+    } catch (e: any) {
+      console.error(e.message);
+    }
+  }
 }
 
 export default new MessController();

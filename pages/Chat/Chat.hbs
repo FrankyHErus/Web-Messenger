@@ -1,7 +1,7 @@
 <div class="chatList">
     <div class="header">
         <div class="settings">
-            <div class="avatar"></div>
+            <div id="userAvatar" class="avatar"></div>
             <a href="../settings">Settings</a>
             <button id="addChat">+</button>
         </div>
@@ -13,8 +13,17 @@
 <div class="chatContent">
     <div class="header">
         <div class="avatar"></div>
-        <h2 class="usernameTitle">username</h2>
-        <div class="settingsOfChat">
+        <h2 class="usernameTitle">Chat Title</h2>
+        <div id="contextOpener" class="settingsOfChat">
+        </div>
+        <div id="contextMenu" class="hidden">
+            <a id="addUser">Add user</a>
+            <a id="removeUser">Remove user</a>
+            <a id="deleteChat">Delete chat</a>
+            <form id="fileForm">
+                <a id="chatImageLink" for="file">Set chat image</a>
+                <input id="file" type="file" hidden/>
+            </form>
         </div>
     </div>
     <div id="message-block" class="messages">

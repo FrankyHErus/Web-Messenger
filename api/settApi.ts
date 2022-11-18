@@ -27,6 +27,10 @@ export class SettAPI extends BaseAPI {
     return this.http.put('/password', data);
   }
 
+  changeAvatar(data: FormData){
+    return this.http.put('/profile/avatar', data);
+  }
+
   create = undefined;
   update = undefined;
   delete = undefined;

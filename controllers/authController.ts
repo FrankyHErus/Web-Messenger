@@ -47,6 +47,8 @@ export class AuthController {
       await this.api.logout().then(() => {
         document.cookie = "id=;";
       });
+      router.go("/sign-in");
+      location.reload();
     } catch (e: any) {
       console.error(e.message);
     }

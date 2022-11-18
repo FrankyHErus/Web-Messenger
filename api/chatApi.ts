@@ -32,6 +32,22 @@ export class ChatAPI extends BaseAPI {
     return this.http.post('', data);
   }
 
+  addUser(data: {"users": number[], "chatId": number}){
+    return this.http.put('/users', data);
+  }
+
+  removeUser(data: {"users": number[], "chatId": number}){
+    return this.http.delete('/users', data);
+  }
+
+  deletecChat(data: {"chatId": number}){
+    return this.http.delete('', data);
+  }
+
+  setAvatar(data: FormData){
+    return this.http.put('/avatar', data);
+  }
+
   create = undefined;
   update = undefined;
   delete = undefined;
