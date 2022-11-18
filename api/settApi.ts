@@ -31,6 +31,10 @@ export class SettAPI extends BaseAPI {
     return this.http.put('/profile/avatar', data);
   }
 
+  getUser(data: Number) : Promise<Response>{
+    return this.http.get('/' + data);
+  }
+
   create = undefined;
   update = undefined;
   delete = undefined;

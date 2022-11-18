@@ -6,7 +6,7 @@ import { SettPage } from "./pages/Settings/settPage"
 import { NFPage } from "./pages/404/404Page"
 import { SPPage } from "./pages/505/505Page"
 import  Router  from "./utils/router";
-import { chatBtnList } from "./components/chatBtn/chatBtn"
+import { ChatBtnList } from "./components/chatBtn/chatBtn"
 import { Message } from "./components/msg/message"
 import { ChatProps } from "./components/chatBtn/chatBtn"
 import authController from "./controllers/authController"
@@ -15,9 +15,8 @@ import authApi, { SignupData } from "./api/authApi"
 import { SigninData } from "./api/authApi"
 import { isArray } from "util"
 import settController from "./controllers/settController"
-import { UserPassword } from "./api/settApi"
+import settApi, { UserPassword } from "./api/settApi"
 import router from "./utils/router"
-import resApi from "./api/resApi"
 
 
 const inputData : Map<string, string> = new Map();
@@ -33,34 +32,53 @@ interface ServerMsgData{
     "file": string
 }
 
-function checkString(regex : RegExp, el : HTMLInputElement){
+function checkString(regex : RegExp, el : HTMLInputElement, incorrectMessage : string){
     if(regex.test(el.value)){
         inputData.set(el.name, el.value);
         el.style.border= "1px solid #000"
+        el.nextElementSibling!.textContent = "";
     }else{
         inputData.set(el.name, el.value);
         el.style.border = "1px solid #ff0000"
+        el.nextElementSibling!.textContent = incorrectMessage;
     }
 }
 
 function updateMessages(msgData : ServerMsgData[]){
 
-    console.log("Received data: ");
-
     let arr : object[] = [];
 
-    if(isArray(msgData)){
+    if(Array.isArray(msgData)){
         for(let i = msgData.length - 1; i >= 0; i--){
-            arr.push({"from": msgData[i].user_id, "text": msgData[i].content});
+            let fromUserBool = false;
+            let username = "";
+            if(msgData[i]["user_id"] == Number(getCookie("id"))){
+                fromUserBool = true;
+                arr.push({"fromUser" : fromUserBool ,"from": "You", "text": msgData[i].content});
+
+                let data = new Message({messages : arr});
+
+                document.getElementById("message-block")?.replaceChildren(data.getContent()!);
+            }else{
+                settApi.getUser(msgData[i].user_id).then((userData : any) => {
+                    console.log(userData);
+                    username = (userData["display_name"]) ? userData["display_name"] : msgData[i]["user_id"];
+                    console.log(username);
+                    arr.push({"fromUser" : fromUserBool ,"from": username, "text": msgData[i].content});
+                    
+                    let data = new Message({messages : arr});
+
+                    document.getElementById("message-block")?.replaceChildren(data.getContent()!);
+                })
+            }
         }
     }else{
-        arr.push({"from": msgData["user_id"], "text": msgData["content"]});
+        arr.push({"fromUser" : true, "from": "You", "text": msgData["content"]});
+
+        let data = new Message({messages : arr});
+
+        document.getElementById("message-block")?.append(data.getContent()!);
     }
-
-    let data = new Message({messages : arr});
-
-    console.log(data.getContent());
-    document.getElementById("message-block")?.append(data.getContent()!);
 }
 
 function getCookie(name : string) {
@@ -76,23 +94,23 @@ function getAllInputData(){
             el.onblur = () => {
                 switch(el.name){
                     case 'login':
-                        checkString(/^[a-zA-Z0-9-_]{3,20}$/gm, el);
+                        checkString(/^[a-zA-Z0-9-_]{3,20}$/gm, el, "Digits, letters and \"-_\" only!");
                         break;
                     case 'password':
-                        checkString(/^(?=.*\d)(?=.*[A-Z]).{8,40}$/gm, el);
+                        checkString(/^(?=.*\d)(?=.*[A-Z]).{8,40}$/gm, el, "Length: 8-40! At least 1 digit and capital letter!");
                         break;
                     case 'first_name':
                     case 'second_name':
-                        checkString(/^[A-ZА-Я]{1}[a-zа-я]*$/gm, el)
+                        checkString(/^[A-ZА-Я]{1}[a-zа-я]*$/gm, el, "Only letters and exactly 1 capital letter on the first position!")
                         break;
                     case 'email':
-                        checkString(/^[a-zA-Z0-9-_]*@{1}[a-zA-Z]+\.{1}[a-zA-Z0-9-_]*$/gm, el)
+                        checkString(/^[a-zA-Z0-9-_]*@{1}[a-zA-Z]+\.{1}[a-zA-Z0-9-_]*$/gm, el, "Invalid email! Example: tempmail@mail.com")
                         break;
                     case 'phone':
-                        checkString(/^\+?\d{10,15}$/gm, el);
+                        checkString(/^\+?\d{10,15}$/gm, el, "\"+\" on the first position and 10-15 digits only!");
                         break;
                     case 'message':
-                        checkString(/^.+$/gm, el);
+                        checkString(/^.+$/gm, el, "");
                         break;
                 }
                 inputData.set(el.name, el.value);
@@ -131,8 +149,6 @@ function renderPage(){
 
     if(path == '/messenger') {
         let activeChat : string;
-        let activeChatName : string;
-        let activeChatAvatar : string;
 
         let socket : WebSocket;
         messController.read().then(token => {
@@ -159,7 +175,7 @@ function renderPage(){
                     avatarsList.push(el["avatar"]);
                 });
 
-                const chatList = new chatBtnList({chats : chatProps});
+                const chatList = new ChatBtnList({chats : chatProps});
                 document.getElementById("chat-list")?.append(chatList.getContent()!);
                 let nodes = document.querySelector(".chat-list")?.querySelectorAll(":scope > li");
                 if(nodes){
@@ -286,8 +302,11 @@ function renderPage(){
 
         chatForm.onchange = async (e) => {
             const formData = new FormData(chatForm);
+            const target : HTMLInputElement = e.target as HTMLInputElement;
             formData.append("chatId", activeChat)
-            formData.append("avatar", (<HTMLInputElement>e.target).files[0]);
+            if(target.files){
+                formData.append("avatar", target.files[0]);
+            }
             messController.setAvatar(formData).then(() => {
                 renderPage()
             });
@@ -341,9 +360,11 @@ function renderPage(){
         let formEl : HTMLFormElement =  <HTMLFormElement>document.getElementById('fileForm')!;
 
         formEl.onchange = async (e) => {
-            const target = e.target as HTMLInputElement;
+            const target : HTMLInputElement = <HTMLInputElement>e.target;
             const formData = new FormData(formEl);
-            formData.append("avatar", target.files[0]);
+            if(target.files){
+                formData.append("avatar", target.files[0]);
+            }
             settController.changeAvatar(formData).then(() => {
                 renderPage()
             });
@@ -351,7 +372,7 @@ function renderPage(){
 
         document.getElementById("settSubmitBtn")!.onclick = () =>{
             
-            let values = Object.values(document.querySelectorAll("input:not([name='oldPassword']):not([name='newPassword'])")).map((child) => ([child.name, child.value]));
+            let values = (<HTMLInputElement[]>Object.values(document.querySelectorAll("input:not([name='oldPassword']):not([name='newPassword'])"))).map((child) => ([child.name, child.value]));
 
             const data = Object.fromEntries(values);
 
@@ -385,7 +406,9 @@ function renderPage(){
     }
 
     try{
-        getAllInputData();
+        if(path != '/sign-in'){
+            getAllInputData();
+        }
     }catch(err){
         console.log(err);
     }
@@ -396,4 +419,3 @@ window.addEventListener('DOMContentLoaded', () => {
     renderPage();
 
 });
-  

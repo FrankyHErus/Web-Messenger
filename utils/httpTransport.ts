@@ -1,3 +1,5 @@
+import queryStringify from "./helpers";
+
 export enum Method {
   Get = 'Get',
   Post = 'Post',
@@ -19,8 +21,8 @@ export default class HTTPTransport {
     this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  public get<Response>(path = '/'): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {method: Method.Get});
+  public get<Response>(path = '/', data = ""): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {method: Method.Get, data});
   }
 
   public post<Response = void>(path: string, data?: unknown): Promise<Response> {
@@ -56,9 +58,14 @@ export default class HTTPTransport {
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
+      
+      if(method == Method.Get){
+        url += queryStringify(data);
+      }
+      
       xhr.open(method, url);
 
-      xhr.onreadystatechange = (e) => {
+      xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status < 400) {
             resolve(xhr.response);

@@ -66,13 +66,24 @@
             width: auto;
             display: flex;
             flex-direction: row;
+            justify-content: space-around;
             flex-wrap: wrap;
-            
-            input{
-                height: fit-content;
-                padding: .5rem;
+
+            div{
                 width: 45%;
-                float: right;
+                
+                input{
+                    height: fit-content;
+                    padding: .5rem;
+                    width: 100%;
+                }
+                label{
+                    display: block;
+                    height: min-content;
+                    width: 100%;
+                    color: $red;
+                    text-align: center;
+                }
             }
         }
         .submitBtn{

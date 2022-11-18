@@ -7,12 +7,12 @@ export type ChatProps = {
   lastMsg : string;
 }
 
-interface chatBtnProps {
+interface ChatBtnProps {
   chats : ChatProps[];
 }
 
-export class chatBtnList extends Block<chatBtnProps> {
-  constructor(props: chatBtnProps) {
+export class ChatBtnList extends Block<ChatBtnProps> {
+  constructor(props: ChatBtnProps) {
     super('ul', props);
     this.element?.classList.add("chat-list");
     

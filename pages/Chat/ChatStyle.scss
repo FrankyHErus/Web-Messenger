@@ -203,7 +203,12 @@ input{
         .userMsg{
             margin-left: auto;
             margin-right: 1rem;
-            background-color: $grey;
+            background-color: $light-grey;
+        }
+        .strangerMsg{
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: $dark-green;
         }
     }
 

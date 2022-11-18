@@ -3,8 +3,8 @@ import template from './Reg.hbs';
 import { Form } from "../../components/form/form"
 
 const formsData : object[] = [
-    {"name": "first_name", "type": "text", "placeholder": "First name", "style": "max-width: 49%; margin-right: 1%; margin-top: 0;"}, 
-    {"name": "second_name", "type": "text", "placeholder": "Second name", "style": "max-width: 49%; margin-left: 1%; margin-top: 0;"}, 
+    {"name": "first_name", "type": "text", "placeholder": "First name"}, 
+    {"name": "second_name", "type": "text", "placeholder": "Second name"}, 
     {"name": "phone", "type": "text", "placeholder": "Phone"}, 
     {"name": "email", "type": "text", "placeholder": "Email"}, 
     {"name": "login", "type": "text", "placeholder": "Login"}, 

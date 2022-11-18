@@ -1,10 +1,14 @@
 import Block from './block';
 
+export interface BlockConstructable<Props extends Record<string, any> = any> {
+  new(props: Props): Block<Props>;
+}
+
 function isEqual(lhs: string, rhs: string): boolean {
   return lhs === rhs;
 }
 
-function render(query: string, block: Block<any>) {
+function render(query: string, block: Block) {
   const root = document.querySelector(query);
 
   if (root === null) {
@@ -19,11 +23,11 @@ function render(query: string, block: Block<any>) {
 }
 
 class Route {
-  private block: Block<any> | null = null;
+  private block: Block | null = null;
 
   constructor(
     private pathname: string,
-    private readonly blockClass: typeof Block,
+    private readonly blockClass: BlockConstructable,
     private readonly query: string) {
   }
 
@@ -37,7 +41,7 @@ class Route {
 
   render() {
     if (!this.block) {
-      this.block = new this.blockClass();
+      this.block = new this.blockClass({});
 
       render(this.query, this.block);
       return;

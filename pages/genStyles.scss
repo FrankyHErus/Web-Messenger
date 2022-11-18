@@ -5,6 +5,7 @@ $light-green: #d0e2c1;
 $light-grey: #cccccc;
 $grey: #A1A1A1;
 $dark-grey: #696969;
+$red: #ff0000;
 $font: 'Inter', sans-serif;
 $fs-huge: 200px;
 $fs-big: 48px;
@@ -58,13 +59,23 @@ form{
     flex-direction: column;
     margin: auto;
 
-    input{
-        padding: 1rem;
-        margin-top: 1rem;
-        font-size: $fs-small;
-        height: 75px;
-        border: 1px solid #000;
-        border-radius: 20px;
+    div{
+        width: 45%;
+        
+        input{
+            border: 1px solid #000;
+            height: fit-content;
+            padding: .5rem;
+            width: 100%;
+        }
+
+        label{
+            display: block;
+            height: min-content;
+            width: 100%;
+            color: $red;
+            text-align: center;
+        }
     }
 }
 

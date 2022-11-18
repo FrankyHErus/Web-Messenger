@@ -19,7 +19,8 @@ export class AuthController {
         location.reload();
       });
     } catch (e: any) {
-      console.error(e);
+        console.log(e);
+        alert("Error: " + e["reason"]);
     }
   }
 

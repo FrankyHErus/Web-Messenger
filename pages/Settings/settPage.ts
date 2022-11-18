@@ -36,4 +36,3 @@ export class SettPage extends Block<SettPageProps> {
         return this.compile(template, this.props);
     }
 }
-

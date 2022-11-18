@@ -8,24 +8,35 @@
         margin-top: 2rem;
     }
 
+    h1{
+        margin-top: 5rem;
+    }
+
     form{
+        margin-top: 0;
         flex-direction: row;
         width: 60%;
         flex-wrap: wrap;
+        justify-content: space-around;
 
         input{
             width: 100%;
             margin-top: 1rem;
-        }
-
-        .submitBtn{
-            background-color: $light-green;
-            cursor: pointer;
-            &:hover{
-                background-color: $dark-green;
-                color: $white;
-            }
+            border: 1px solid #000;
         }
     }
 
+    .submitBtn{
+        width: 50%;
+        height: min-content;
+        padding: 0.5rem;
+        margin-top: 2rem;
+        text-align: center;
+        background-color: $light-green;
+        cursor: pointer;
+        &:hover{
+            background-color: $dark-green;
+            color: $white;
+        }
+    }
 }
