@@ -1,42 +1,49 @@
 {
-    "name": "test",
-    "version": "1.0.0",
-    "description": "",
-    "scripts": {
-        "dev": "parcel index.html",
-        "build": "parcel build index.html --no-cache",
-        "start": "npm run build && node ./server.js"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
-        "@parcel/transformer-sass": "2.7.0",
-        "@types/chai": "4.3.4",
-        "@types/mocha": "10.0.0",
-        "@types/node": "18.7.13",
-        "@typescript-eslint/eslint-plugin": "5.36.0",
-        "@typescript-eslint/parser": "5.36.0",
-        "chai": "4.3.7",
-        "eslint": "8.23.0",
-        "eslint-config-airbnb": "19.0.4",
-        "express": "4.18.1",
-        "mocha": "10.1.0",
-        "parcel": "2.0.1",
-        "process": "0.11.10",
-        "stylelint": "14.11.0",
-        "typescript": "4.8.2",
-        "util": "0.12.5",
-        "engines" : {
-            "npm" : "^8.0.0",
-            "node" : "^16.0.0"
-        }
-    },
-    "dependencies": {
-        "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
-        "express-history-api-fallback": "2.2.1",
-        "handlebars": "4.7.7",
-        "nanoid": "4.0.0"
+  "name": "test",
+  "version": "1.0.0",
+  "description": "Данный веб-проект - мессенджер. Подключен parcel, используется трансформер для handlebars, все стили написаны при помощи scss.",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html --no-cache",
+    "start": "npm run build && node ./server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "@parcel/transformer-sass": "^2.8.0",
+    "@types/chai": "4.3.4",
+    "@types/mocha": "10.0.0",
+    "@types/node": "18.7.13",
+    "@typescript-eslint/eslint-plugin": "5.36.0",
+    "@typescript-eslint/parser": "5.36.0",
+    "chai": "4.3.7",
+    "eslint": "8.23.0",
+    "eslint-config-airbnb": "19.0.4",
+    "express": "4.18.1",
+    "mocha": "10.1.0",
+    "parcel": "2.0.1",
+    "process": "0.11.10",
+    "stylelint": "14.11.0",
+    "typescript": "4.8.2",
+    "util": "0.12.5",
+    "engines": {
+        "npm": "^8.0.0",
+        "node": "^16.0.0"
     }
+  },
+  "dependencies": {
+    "express-history-api-fallback": "2.2.1",
+    "handlebars": "4.7.7",
+    "nanoid": "4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrankyHErus/middle.messenger.praktikum.yandex.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FrankyHErus/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/FrankyHErus/middle.messenger.praktikum.yandex#readme"
 }

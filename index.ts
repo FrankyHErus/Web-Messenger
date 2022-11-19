@@ -13,7 +13,6 @@ import authController from "./controllers/authController"
 import messController from "./controllers/messController"
 import authApi, { SignupData } from "./api/authApi"
 import { SigninData } from "./api/authApi"
-import { isArray } from "util"
 import settController from "./controllers/settController"
 import settApi, { UserPassword } from "./api/settApi"
 import router from "./utils/router"
@@ -419,3 +418,4 @@ window.addEventListener('DOMContentLoaded', () => {
     renderPage();
 
 });
+
