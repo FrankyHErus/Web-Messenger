@@ -405,9 +405,7 @@ function renderPage(){
     }
 
     try{
-        if(path != '/sign-in'){
-            getAllInputData();
-        }
+        getAllInputData();
     }catch(err){
         console.log(err);
     }
