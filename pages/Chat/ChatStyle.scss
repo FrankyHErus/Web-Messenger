@@ -25,6 +25,10 @@ input{
     flex: 1;
     border-right: 1px solid $grey;
 
+    .activeChat{
+        background-color: $grey;
+    }
+
     .header{
         display: flex;
         flex-direction: column;
@@ -127,7 +131,7 @@ input{
         }
 
         .settingsOfChat{
-            margin: auto 0 auto auto;
+            margin: auto 2rem auto auto;
             cursor: pointer;
             color: $dark-green;
 
@@ -139,6 +143,30 @@ input{
                 content: '⋮';
                 font-size: 60px;
             }
+        }
+
+        #contextMenu{
+            z-index: 100;
+            position: fixed;
+            right: 2rem;
+            top: 5rem;
+            display: flex;
+            flex-direction: column;
+            background-color: $light-grey;
+
+            a{
+                padding: 0.5rem;
+                font-size: 1.5rem;
+
+            }
+
+            a:hover{
+                background-color: $grey;
+            }
+        }
+
+        .hidden{
+            display: none !important;
         }
 
     }
@@ -175,7 +203,12 @@ input{
         .userMsg{
             margin-left: auto;
             margin-right: 1rem;
-            background-color: $grey;
+            background-color: $light-grey;
+        }
+        .strangerMsg{
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: $dark-green;
         }
     }
 
@@ -189,6 +222,7 @@ input{
         border-top: 1px solid $grey;
 
         .message-form{
+            display: flex;
             width: 100%;
             flex-direction: row;
         }

@@ -7,9 +7,7 @@ interface MessageProps {
 
 export class Message extends Block<MessageProps> {
   constructor(props: MessageProps) {
-    super('section', props);
-
-    this.element?.classList.add("wrapper");
+    super('ul', props);
   }
 
   render() {

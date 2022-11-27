@@ -1,29 +1,30 @@
 [[redirects]]
-  from = "/404/404.hbs"
+  from = "/404"
   to = "/"
   status=200 
 
 [[redirects]]
-  from = "/505/500.hbs"
+  from = "/505"
   to = "/"
   status=200
 
 [[redirects]]
-  from = "/Auth/Auth.hbs"
+  from = "/sign-in"
   to = "/"
   status=200
 
 [[redirects]]
-  from = "/Chat/Chat.hbs"
+  from = "/sign-up"
   to = "/"
   status=200
 
 [[redirects]]
-  from = "/Reg/Reg.hbs"
+  from = "/settings"
   to = "/"
   status=200
 
 [[redirects]]
-  from = "/Settings/Settings.hbs"
+  from = "/messenger"
   to = "/"
   status=200
+  

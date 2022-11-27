@@ -16,6 +16,13 @@
     max-width: 50%;
     margin: auto;
 
+    form{
+        
+        div{
+            width: 100%;
+        }
+    }
+
     .loginBtn{
         transition: all .1s;
         display: flex;

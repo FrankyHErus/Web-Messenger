@@ -1,65 +1,100 @@
-enum METHODS {
-    GET = 'GET',
-    PUT = 'PUT',
-    POST = 'POST',
-    DELETE = 'DELETE'
-};
+import queryStringify from "./helpers";
 
-function queryStringify(data : object) {
-    let str = '?';
-    
-    for (const [key, value] of Object.entries(data)) {
-        str += key + "=" + value + "&";
-    }
-    str = str.slice(0, str.length - 1)
-    
-    return str
+export enum Method {
+  Get = 'Get',
+  Post = 'Post',
+  Put = 'Put',
+  Patch = 'Patch',
+  Delete = 'Delete'
 }
 
+type Options = {
+  method: Method;
+  data?: any;
+};
+
 export default class HTTPTransport {
+  static API_URL = 'https://ya-praktikum.tech/api/v2';
+  protected endpoint: string;
 
-    get = (url : string, options : Object, timeout : number) => {
-        return this.request(url, {data : options, method: METHODS.GET}, timeout);
-    };
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+  }
 
-    put = (url : string, options : Object, timeout : number) => {
-        return this.request(url, {data : options, method: METHODS.PUT}, timeout);
-    };
+  public get<Response>(path = '/', data = ""): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {method: Method.Get, data});
+  }
 
-    post = (url : string, options : Object, timeout : number) => {
-        return this.request(url, {data : options, method: METHODS.POST}, timeout);
-    };
+  public post<Response = void>(path: string, data?: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Post,
+      data,
+    });
+  }
 
-    delete = (url : string, options : Object, timeout : number) => {
-        return this.request(url, {data : options, method: METHODS.DELETE}, timeout);
-    };
+  public put<Response = void>(path: string, data: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Put,
+      data,
+    });
+  }
 
-    request = (url : string, options : {data : Object; method: string}, timeout = 5000) => {
-        let {data, method} = options;
+  public patch<Response = void>(path: string, data: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Patch,
+      data,
+    });
+  }
+
+  public delete<Response>(path: string, data: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Delete,
+      data
+    });
+  }
+
+  private request<Response>(url: string, options: Options): Promise<Response> {
+    const {method, data} = options;
+
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
       
-        if(method == METHODS.GET){
-          url += queryStringify(data);
-        }
+      if(method == Method.Get){
+        url += queryStringify(data);
+      }
+      
+      xhr.open(method, url);
 
-        return new Promise((resolve, reject) => {
-          const xhr = new XMLHttpRequest();
-          xhr.timeout = timeout;
-
-          xhr.open(method, url);
-
-          xhr.onload = () => {
-            resolve(xhr);
-          }
-
-          xhr.onabort = reject;
-          xhr.onerror = reject;
-          xhr.ontimeout = reject;
-        
-          if (method === METHODS.GET || !data) {
-            xhr.send();
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            resolve(xhr.response);
           } else {
-            xhr.send(JSON.stringify(Object.entries(data)));
+            reject(xhr.response);
           }
-      });
-    };
+        }
+      };
+
+      xhr.onabort = () => reject({reason: 'abort'});
+      xhr.onerror = () => reject({reason: 'network error'});
+      xhr.ontimeout = () => reject({reason: 'timeout'});
+
+      if(options.data instanceof FormData){
+        
+      }else{
+        xhr.setRequestHeader('Content-Type', 'application/json');
+      }
+
+      xhr.withCredentials = true;
+      xhr.responseType = "json";
+
+      if (method === Method.Get || !data) {
+        xhr.send();
+      } else if(options.data instanceof FormData){
+        xhr.send(data);
+      }else{
+        xhr.send(JSON.stringify(data));
+      }
+    });
+  }
 }
