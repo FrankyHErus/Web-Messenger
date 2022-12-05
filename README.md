@@ -1,17 +1,22 @@
-Данный веб-проект - мессенджер. Подключен parcel, используется трансформер для handlebars, все стили написаны при помощи scss. 
+Данный веб-проект - мессенджер. Подключен webpack, используется лоадер для handlebars, подключен лоадер для scss. 
 
 Является SPA, подключен TypeScript. Код проходит проверки ESLint (наследуются правила Airbnb), также одключен Stylelint.
 
-Команды для запуска:
-    
-    "build": "parcel build index.html --no-cache"
-    (собирает проект через parcel, запсукается на http://localhost:1234/)
+Присутствует Dockerfile для сборки проекта.
 
-    "start": "node ./server.js"
-    (запускает проект при помощи express сервера на http://localhost:3000)
+Подключен precommit при помощи Husky. Пакеты обновлены до последней версии
+
+Команды для запуска:
+
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --define-process-env-node-env=production"
+    (собирает проект при помощи сборщика webpack)
+
+    "serve": "webpack serve"
+    (запускает проект на http://localhost:8080)
 
 Ссылка на дизайн в Figma:
 https://www.figma.com/file/KMFGI1h7pylLzD8G0NITfr/Chat-Design
 
-Также сайт задеплоен в Netlify:
-https://deploy-preview-5--ubiquitous-bonbon-eba96b.netlify.app/
+Также сайт задеплоен на Render.com:
+https://web-messenger.onrender.com
