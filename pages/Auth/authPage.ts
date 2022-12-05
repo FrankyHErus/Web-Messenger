@@ -1,5 +1,5 @@
 import Block from '../../utils/block';
-import template from './Auth.hbs';
+import template from './Auth.handlebars';
 import { Form } from "../../components/form/form"
 
 const formsData : object[] = [

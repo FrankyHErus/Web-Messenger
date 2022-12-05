@@ -16,6 +16,13 @@ import { SigninData } from "./api/authApi"
 import settController from "./controllers/settController"
 import settApi, { UserPassword } from "./api/settApi"
 import router from "./utils/router"
+import "./pages/genStyles.scss"
+import "./pages/404/404style.scss"
+import "./pages/505/500style.scss"
+import "./pages/Auth/AuthStyle.scss"
+import "./pages/Chat/ChatStyle.scss"
+import "./pages/Reg/RegStyle.scss"
+import "./pages/Settings/SettStyle.scss"
 
 
 const inputData : Map<string, string> = new Map();
@@ -401,7 +408,7 @@ function renderPage(){
             authController.logout();
         }
     }else if(path == '/'){
-        document.location.pathname = '/sign-in'
+        //document.location.pathname = '/sign-in'
     }
 
     try{

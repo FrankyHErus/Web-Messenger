@@ -1,5 +1,5 @@
 import Block from '../../utils/block';
-import template from './chatBtn.hbs';
+import template from './chatBtn.handlebars';
 
 export type ChatProps = {
   avatarUrl : string;

@@ -1,5 +1,5 @@
 import Block from '../../utils/block';
-import template from './500.hbs';
+import template from './500.handlebars';
 
 interface spPageProps {
 }

@@ -1,5 +1,5 @@
 import Block from '../../utils/block';
-import template from './404.hbs';
+import template from './404.handlebars';
 
 interface nfPageProps {
 }
