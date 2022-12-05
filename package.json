@@ -15,6 +15,7 @@
   "scripts": {
     "dev": "parcel index.html",
     "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
     "build": "webpack --mode=production --define-process-env-node-env=production",
     "start": "npm run build && node ./server.js",
     "build:dev": "webpack --mode=development",
