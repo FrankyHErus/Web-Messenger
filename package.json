@@ -59,8 +59,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx eslint ./"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged":{
+    "./":[
+      "eslint"
+    ]
   },
   "dependencies": {
     "express-history-api-fallback": "2.2.1",
