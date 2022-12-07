@@ -1,6 +1,5 @@
 import chai from "chai"
 import "../router"
-import router from "../router";
 const { JSDOM } = require("jsdom");
 
 describe("Checking Router", () => {
