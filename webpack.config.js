@@ -18,6 +18,7 @@ const config = {
     open: true,
     host: 'localhost',
     historyApiFallback: true,
+    port: 3000
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -25,9 +26,6 @@ const config = {
     }),
 
     new MiniCssExtractPlugin(),
-
-    // Add your plugins here
-    // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
   module: {
     rules: [
@@ -48,9 +46,6 @@ const config = {
         test: /\.handlebars$/,
         loader: 'handlebars-loader',
       },
-
-      // Add your rules for custom modules here
-      // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
   resolve: {
