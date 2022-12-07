@@ -21,19 +21,22 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --define-process-env-node-env=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "tests": "./node_modules/.bin/ts-mocha -r jsdom-global/register"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/chai": "4.3.4",
-    "@types/mocha": "10.0.0",
+    "@babel/register": "^7.18.9",
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.0",
     "@types/node": "18.7.13",
+    "@types/uuid": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "5.36.0",
     "@typescript-eslint/parser": "5.36.0",
     "@webpack-cli/generators": "^3.0.0",
-    "chai": "4.3.7",
+    "chai": "^4.3.7",
     "css-loader": "^6.7.2",
     "eslint": "8.23.0",
     "eslint-config-airbnb": "19.0.4",
@@ -42,7 +45,7 @@
     "html-webpack-plugin": "^5.5.0",
     "husky": "^8.0.2",
     "mini-css-extract-plugin": "^2.7.1",
-    "mocha": "10.1.0",
+    "mocha": "^10.1.0",
     "prettier": "^2.8.0",
     "process": "0.11.10",
     "sass": "^1.56.1",
@@ -59,7 +62,11 @@
   "dependencies": {
     "express-history-api-fallback": "2.2.1",
     "handlebars": "4.7.7",
-    "nanoid": "4.0.0"
+    "jsdom-global": "^3.0.2",
+    "mock-xmlhttprequest": "^8.1.0",
+    "nanoid": "4.0.0",
+    "ts-mocha": "^10.0.0",
+    "uuid": "^9.0.0"
   },
   "repository": {
     "type": "git",
