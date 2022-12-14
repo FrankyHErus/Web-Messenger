@@ -8,7 +8,7 @@ export enum Method {
   Delete = 'Delete'
 }
 
-type Options = {
+export type Options = {
   method: Method;
   data?: any;
 };

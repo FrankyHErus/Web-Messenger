@@ -1,6 +1,6 @@
 export class EventBus {
 
-  private readonly listeners: Record<string, any> = {};
+  private readonly listeners: Record<string, Function[]> = {};
 
   on(event : string, callback : Function) {
     if (!this.listeners[event]) {
@@ -20,7 +20,7 @@ export class EventBus {
     );
   }
 
-  emit(event : string, ...args) {
+  emit(event : string, ...args : any[]) {
     if (!this.listeners[event]) {
       throw new Event(`Нет события: ${event}`);
     }

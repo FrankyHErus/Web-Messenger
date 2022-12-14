@@ -1,5 +1,5 @@
 import { EventBus } from "./event-bus";
-import { nanoid } from 'nanoid';
+import { v4 as uuidv4 } from 'uuid';
 
 class Block<Props extends Record<string, any> = any> {
   static EVENTS = {
@@ -9,7 +9,7 @@ class Block<Props extends Record<string, any> = any> {
     FLOW_RENDER: "flow:render"
   };
 
-  public id = nanoid(6);
+  public id = uuidv4();
   protected props: Props;
   public children: Record<string, Block | Block[]>;
   private eventBus: () => EventBus;

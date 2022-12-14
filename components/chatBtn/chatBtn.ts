@@ -1,5 +1,5 @@
 import Block from '../../utils/block';
-import template from './chatBtn.hbs';
+import template from './chatBtn.handlebars';
 
 export type ChatProps = {
   avatarUrl : string;
@@ -7,7 +7,7 @@ export type ChatProps = {
   lastMsg : string;
 }
 
-interface ChatBtnProps {
+export interface ChatBtnProps {
   chats : ChatProps[];
 }
 
@@ -15,7 +15,6 @@ export class ChatBtnList extends Block<ChatBtnProps> {
   constructor(props: ChatBtnProps) {
     super('ul', props);
     this.element?.classList.add("chat-list");
-    
   }
 
   render() {

@@ -1,18 +1,9 @@
 import Block from '../../utils/block';
-import template from './Chat.hbs';
-
-interface chatsData {
-    "avatarUrl" : string,
-    "username" : string,
-    "lastMsg" : string
-}
-
-interface ChatPageProps {
-}
+import template from './Chat.handlebars';
   
 export class ChatPage extends Block<ChatPage> {
 
-    constructor(props: ChatPageProps) {
+    constructor(props: ChatPage) {
         super('main', props);
         this.element?.classList.add("container-full");
     }

@@ -1,5 +1,5 @@
 import Block from '../../utils/block';
-import template from './message.hbs';
+import template from './message.handlebars';
 
 interface MessageProps {
   messages : object[]

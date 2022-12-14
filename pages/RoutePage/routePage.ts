@@ -1,5 +1,5 @@
 import Block from '../../utils/block';
-import template from './routePage.hbs';
+import template from './routePage.handlebars';
 
 interface RoutePageProps {
   title: string;

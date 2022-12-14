@@ -1,5 +1,5 @@
 import Block from '../../utils/block';
-import template from './form.hbs';
+import template from './form.handlebars';
 
 interface FormProps {
   data : object[]

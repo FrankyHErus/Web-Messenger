@@ -1,5 +1,5 @@
 import Block from '../../utils/block';
-import template from './Reg.hbs';
+import template from './Reg.handlebars';
 import { Form } from "../../components/form/form"
 
 const formsData : object[] = [

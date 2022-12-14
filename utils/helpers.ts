@@ -38,7 +38,7 @@ export function set(object: Indexed | unknown, path: string, value: unknown): In
   return merge(object as Indexed, result);
 }
 
-type PlainObject<T = unknown> = {
+export type PlainObject<T = unknown> = {
   [k in string]: T;
 };
 
@@ -53,7 +53,7 @@ function isArray(value: unknown): value is [] {
   return Array.isArray(value);
 }
 
-function isArrayOrObject(value: unknown): value is [] | PlainObject {
+export function isArrayOrObject(value: unknown): value is [] | PlainObject {
   return isPlainObject(value) || isArray(value);
 }
 
