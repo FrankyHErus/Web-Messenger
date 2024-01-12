@@ -1,22 +1,31 @@
-Данный веб-проект - мессенджер. Подключен webpack, используется лоадер для handlebars, подключен лоадер для scss. 
+<h1>Web-messenger</h1>
+<p>
+    This project is training. This web-messenger is realised just for fun using tools such as:
+    <ul>
+        <li>Typescript</li>
+        <li>Handlebars</li>
+        <li>SCSS</li>
+        <li>ESLint</li>
+        <li>Webpack</li>
+    </ul> 
+</p>
 
-Является SPA, подключен TypeScript. Код проходит проверки ESLint (наследуются правила Airbnb), также одключен Stylelint.
+<hr />
 
-Присутствует Dockerfile для сборки проекта.
+If you want to test it, project also has dockerfile
 
-Подключен precommit при помощи Husky. Пакеты обновлены до последней версии
+Commands for bash:
 
-Команды для запуска:
+```bash
+"build:dev": "webpack --mode=development",
+"build:prod": "webpack --mode=production --define-process-env-node-env=production"
+"serve": "webpack serve"
+```
 
-    "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production --define-process-env-node-env=production"
-    (собирает проект при помощи сборщика webpack)
+<hr />
 
-    "serve": "webpack serve"
-    (запускает проект на http://localhost:8080)
-
-Ссылка на дизайн в Figma:
-https://www.figma.com/file/KMFGI1h7pylLzD8G0NITfr/Chat-Design
-
-Также сайт задеплоен на Render.com:
-https://web-messenger.onrender.com
+<h3>Links, connected with project: </h3>
+<ul>
+    <li> https://www.figma.com/file/KMFGI1h7pylLzD8G0NITfr/Chat-Design </li>
+    <li> https://web-messenger.onrender.com </li>
+</ul>
